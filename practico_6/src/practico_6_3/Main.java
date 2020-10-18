@@ -18,13 +18,35 @@ public class Main {
 		System.out.println(a2.getDisponibilidad());
 
 		// alquilo el ford ka
-		a1.alquilar(15, 10, 2020, 5);
+		a1.alquilar(15, 10, 2020, 2);
 
 		// pregunto si está disponible
-		System.out.println(a1.getDisponibilidad());
+		System.out.println(a1.getNombre() + " disponible: " + a1.getDisponibilidad());
+		System.out.println(a2.getNombre() + " disponible: " + a2.getDisponibilidad());
 
 		// pregunto si esta vencido
-		System.out.println("*" + a1.estaAlquilerVencido_());
+		System.out.println(a1.getNombre() + " alquiler vencido: " + a1.estaAlquilerVencido_());
+
+		// devolución auto
+		a1.devolucion();
+		System.out.println(a1.getFechaAlquiler());
+		System.out.println(a1.getFechaVencimiento());
+		System.out.println(a1.getNombre() + " disponible: " + a1.getDisponibilidad());
+
+		System.out.println("*** Peliculas ***");
+		Pelicula p1 = new Pelicula("Titanic", 5);
+
+		// forzar error de stock para alquilar
+		p1.alquilar(10, 10, 2020, 1);
+		p1.alquilar(11, 10, 2020, 1);
+		p1.alquilar(12, 10, 2020, 1);
+		p1.alquilar(12, 10, 2020, 1);
+		p1.alquilar(12, 10, 2020, 1);
+		p1.alquilar(12, 10, 2020, 1);
+		System.out.println(p1.getCantidadCopias());
+		p1.devolucion();
+		p1.devolucion();
+		System.out.println(p1.getCantidadCopias());
 
 	}
 

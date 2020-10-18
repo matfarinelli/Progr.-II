@@ -4,18 +4,21 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 
-public class Producto {
+public abstract class Producto {
 
 	private String nombre;
 	protected LocalDate fechaAlquiler;
 	protected LocalDate fechaVencimiento;
 	protected boolean estaDisponible;
-	private ArrayList<String> caracteristicas;
+	private ArrayList<String> caracteristicas; // datos del auto y de las peliculas
 
 	/*
-	 * no consideré que sean importantes para el enunciado las particularidades de
-	 * la pelicula o auto
+	 * Metodos abstractos
 	 */
+
+	public abstract void alquilar(int dia, int mes, int anio, int dias_alquiler);
+
+	public abstract void devolucion();
 
 	/*
 	 * Constructor
@@ -50,6 +53,7 @@ public class Producto {
 		return this.estaDisponible;
 	}
 
+	// permite setear "manualmente la disponibilidad
 	public void setDisponibilidad(boolean disponibilidad) {
 		this.estaDisponible = disponibilidad;
 	}
@@ -70,16 +74,7 @@ public class Producto {
 		return this.getNombre();
 	}
 
-	// consultar -> supuse que los productos podían alquilarse por "x" cantidad de
-	// días.
-
-	public void alquilar(int dia, int mes, int anio, int dias_alquiler) {
-		this.fechaAlquiler = LocalDate.of(anio, mes, dia);
-		this.fechaVencimiento = this.fechaAlquiler.plusDays(dias_alquiler);
-		this.setDisponibilidad(false);
-	}
-
-	// no funciona
+	// no funciona (no se cual es mi error)
 	public boolean estaAlquilerVencido() {
 		if (this.fechaAlquiler.isAfter(this.fechaVencimiento) || (this.fechaAlquiler.isEqual(this.fechaVencimiento))) {
 			// System.out.println(fechaAlquiler);
