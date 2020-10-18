@@ -18,13 +18,13 @@ public class Main {
 		System.out.println(a2.getDisponibilidad());
 
 		// alquilo el ford ka
-		a1.alquilar(15, 10, 2020, 18);
+		a1.alquilar(15, 10, 2020, 5);
 
 		// pregunto si está disponible
 		System.out.println(a1.getDisponibilidad());
 
 		// pregunto si esta vencido
-		System.out.println(a1.estaAlquilerVencido());
+		System.out.println("*" + a1.estaAlquilerVencido_());
 
 	}
 

@@ -81,15 +81,25 @@ public class Producto {
 
 	// no funciona
 	public boolean estaAlquilerVencido() {
-		if (this.fechaAlquiler.isAfter(this.fechaVencimiento)){
-			System.out.println(fechaAlquiler);
-			System.out.println(fechaVencimiento);
+		if (this.fechaAlquiler.isAfter(this.fechaVencimiento) || (this.fechaAlquiler.isEqual(this.fechaVencimiento))) {
+			// System.out.println(fechaAlquiler);
+			// System.out.println(fechaVencimiento);
 			return true;
 		} else {
-			System.out.println(fechaAlquiler);
-			System.out.println(fechaVencimiento);
+			// System.out.println(fechaAlquiler);
+			// System.out.println(fechaVencimiento);
 			return false;
 		}
+	}
+
+	public boolean estaAlquilerVencido_() {
+		LocalDate hoy = LocalDate.now();
+		int diasRestantesAlquiler = Period.between(hoy, fechaVencimiento).getDays();
+
+		if (diasRestantesAlquiler >= 0) {
+			return false;
+		} else
+			return true;
 	}
 
 }
