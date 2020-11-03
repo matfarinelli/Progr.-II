@@ -4,6 +4,10 @@ import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
+
+import practico_especial.Atributo;
+import practico_especial.Carta;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,11 +27,21 @@ public class VisorMazo {
 			JsonArray cartas = (JsonArray) reader.readObject().getJsonArray("cartas");
 			for (JsonObject carta : cartas.getValuesAs(JsonObject.class)) {
 				String nombreCarta = carta.getString("nombre");
+
+				Carta cartaNueva = new Carta(nombreCarta); // creación de carta
+
 				JsonObject atributos = (JsonObject) carta.getJsonObject("atributos");
 				String atributosStr = "";
-				for (String nombreAtributo : atributos.keySet())
+				for (String nombreAtributo : atributos.keySet()) {
+
+					Atributo atributoNuevo = new Atributo(nombreAtributo, atributos.getInt(nombreAtributo)); //creamos atributo
+					
+					cartaNueva.addAtributo(atributoNuevo);  //lo agregamos a la carta
+
 					atributosStr = atributosStr + nombreAtributo + ": " + atributos.getInt(nombreAtributo) + "; ";
-				System.out.println(nombreCarta + "\t\t\t" + atributosStr);
+					System.out.println(nombreCarta + "\t\t\t" + atributosStr);
+				}
+
 			}
 
 			reader.close();

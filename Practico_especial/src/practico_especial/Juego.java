@@ -18,4 +18,12 @@ public class Juego {
 		this.numeroMaximoRondas = numeroMaximoRondas;
 	}
 
+	/*
+	 * Metodos
+	 */
+	
+	public void repartirCartas(Jugador j1 , Jugador j2, Mazo mazo) {
+		
+	}
+	
 }
