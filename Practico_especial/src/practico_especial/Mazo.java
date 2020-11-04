@@ -10,21 +10,36 @@ public class Mazo {
 
 	public Mazo() {
 		this.cartas = new ArrayList<>();
-		this.atributos = new ArrayList<>();
+		this.atributos = new ArrayList<>(); //atributos del juego
 	}
 
 	/*
 	 * Metodos
 	 */
 
-	public void addCartas(Carta carta) {
+	public void addCartasAptas(Carta carta) {
 		// deberiamos controlar que no este repetida y corresponda al mazo
 		// carta tendria que tener un metodo para contar y conocer sus atributos (5)
 		if (chequearAtributos(carta)){ 
-			this.cartas.add(carta);
+			addCarta(carta);
 		}
 	}
+	
+	//para los mazos de jugadores
+	public void addCarta(Carta carta) {
+		this.cartas.add(carta);
+	}
+	
 
+	public Carta getPrimerCarta() {
+		return this.cartas.get(0);
+	}
+	
+	
+	public Carta eliminarPrimerCarta() {
+		return this.cartas.remove(0);
+	}
+	
 	public boolean chequearAtributos(Carta carta) {
 		for (int i = 0; i < this.atributos.size(); i++) {
 			Atributo aux = this.atributos.get(i);
@@ -54,6 +69,10 @@ public class Mazo {
 
 	public void mezclar() {
 		Collections.shuffle(cartas);
+	}
+	
+	public int getSize() {
+		return this.cartas.size();
 	}
 	
 }

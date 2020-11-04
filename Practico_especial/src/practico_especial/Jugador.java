@@ -1,18 +1,29 @@
 package practico_especial;
 
-import java.util.ArrayList;
-
 public class Jugador {
 
 	private String nombre;
-	private ArrayList<Carta> cartas; 
+	private Mazo mazoPropio;
 
 	public Jugador(String nombre) {
 		this.nombre = nombre;
+		this.mazoPropio = mazoPropio;
 	}
 
 	public String getNombre() {
 		return this.nombre;
 	}
 
-} 
+	/*
+	 * Metodos
+	 */
+
+	public void addCarta(Carta carta) {
+		this.mazoPropio.addCarta(carta);
+	}
+
+	public int getSize() {
+		return this.mazoPropio.getSize();
+	}
+
+}

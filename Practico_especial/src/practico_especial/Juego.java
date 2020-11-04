@@ -10,20 +10,29 @@ public class Juego {
 	private Jugador jugador2;
 	private int numeroMaximoRondas;
 
-	public Juego(String nombre, String j1, String j2, int numeroMaximoRondas) {
+	public Juego(String nombre, Jugador j1, Jugador j2, Mazo m1, int numeroMaximoRondas) {
 		this.nombre = nombre;
-		this.mazo = new Mazo();
-		this.jugador1 = new Jugador(j1);
-		this.jugador2 = new Jugador(j2);
+		this.mazo = m1;
+		this.jugador1 = j1;
+		this.jugador2 = j2;
 		this.numeroMaximoRondas = numeroMaximoRondas;
 	}
 
 	/*
 	 * Metodos
 	 */
-	
-	public void repartirCartas(Jugador j1 , Jugador j2, Mazo mazo) {
-		
+
+	public void repartirCartas() {
+		System.out.println(mazo.getSize());
+		for (int i = 0; i < mazo.getSize()-1; i++) {
+			Carta aux = mazo.getPrimerCarta();
+			if (i % 2 == 0) {
+				this.jugador1.addCarta(aux);
+			} else {
+				this.jugador2.addCarta(aux);
+			}
+			mazo.getCartas().remove(i);
+		}
 	}
-	
+
 }

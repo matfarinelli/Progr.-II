@@ -40,9 +40,19 @@ public class Main {
 		// imprimo el mazo y mezclo
 		m1.mezclar();
 		System.out.println(m1.getCartas());
+		
+		
+		System.out.println("******************");
 
+		// creacion jugadores
+		Jugador j1 = new Jugador("Juan");
+		Jugador j2 = new Jugador("Matias");
 		
+		Juego juego = new Juego("Cartas",j1, j2, m1,10);
 		
+		juego.repartirCartas();
+		System.out.println(j1.getSize());
+		System.out.println(j2.getSize());
 		
 	}
 
@@ -90,7 +100,7 @@ public class Main {
 				}
 
 				//System.out.println(nombreCarta + "\t\t\t" + atributosStr);
-				mazo.addCartas(cartaNueva);
+				mazo.addCartasAptas(cartaNueva);
 			}
 
 			reader.close();
