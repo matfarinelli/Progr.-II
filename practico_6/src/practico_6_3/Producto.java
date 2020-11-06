@@ -7,8 +7,6 @@ import java.util.ArrayList;
 public abstract class Producto {
 
 	private String nombre;
-	protected LocalDate fechaAlquiler;
-	protected LocalDate fechaVencimiento;
 	protected boolean estaDisponible;
 	private ArrayList<String> caracteristicas; // datos del auto y de las peliculas
 
@@ -16,9 +14,9 @@ public abstract class Producto {
 	 * Metodos abstractos
 	 */
 
-	public abstract void alquilar(int dia, int mes, int anio, int dias_alquiler);
+	public abstract void meAlquilaron();
 
-	public abstract void devolucion();
+	public abstract void meDevolvieron();
 
 	/*
 	 * Constructor
@@ -37,23 +35,12 @@ public abstract class Producto {
 		return this.nombre;
 	}
 
-	public void setFechaAlquiler(int dia, int mes, int anio) {
-		this.fechaAlquiler = LocalDate.of(anio, mes, dia);
-	}
-
-	public LocalDate getFechaAlquiler() {
-		return fechaAlquiler;
-	}
-
-	public LocalDate getFechaVencimiento() {
-		return fechaVencimiento;
-	}
-
 	public boolean getDisponibilidad() {
 		return this.estaDisponible;
 	}
 
-	// permite setear "manualmente la disponibilidad
+	// permite setear "manualmente la disponibilidad y es invocado por los
+	// abstractos
 	public void setDisponibilidad(boolean disponibilidad) {
 		this.estaDisponible = disponibilidad;
 	}
@@ -72,29 +59,6 @@ public abstract class Producto {
 
 	public String toString() {
 		return this.getNombre();
-	}
-
-	// no funciona (no se cual es mi error)
-	public boolean estaAlquilerVencido() {
-		if (this.fechaAlquiler.isAfter(this.fechaVencimiento) || (this.fechaAlquiler.isEqual(this.fechaVencimiento))) {
-			// System.out.println(fechaAlquiler);
-			// System.out.println(fechaVencimiento);
-			return true;
-		} else {
-			// System.out.println(fechaAlquiler);
-			// System.out.println(fechaVencimiento);
-			return false;
-		}
-	}
-
-	public boolean estaAlquilerVencido_() {
-		LocalDate hoy = LocalDate.now();
-		int diasRestantesAlquiler = Period.between(hoy, fechaVencimiento).getDays();
-
-		if (diasRestantesAlquiler >= 0) {
-			return false;
-		} else
-			return true;
 	}
 
 }

@@ -1,7 +1,5 @@
 package practico_6_3;
 
-import java.time.LocalDate;
-
 public class Pelicula extends Producto {
 
 	private int cantidadCopias;
@@ -16,10 +14,8 @@ public class Pelicula extends Producto {
 	}
 
 	@Override
-	public void alquilar(int dia, int mes, int anio, int dias_alquiler) {
+	public void meAlquilaron() {
 		if (cantidadCopias > 0) {
-			this.fechaAlquiler = LocalDate.of(anio, mes, dia);
-			this.fechaVencimiento = this.fechaAlquiler.plusDays(dias_alquiler);
 			cantidadCopias--;
 			if (cantidadCopias == 0) {
 				this.setDisponibilidad(false);
@@ -29,9 +25,7 @@ public class Pelicula extends Producto {
 	}
 
 	@Override
-	public void devolucion() {
-		this.fechaAlquiler = null;
-		this.fechaVencimiento = null;
+	public void meDevolvieron() {
 		cantidadCopias++;
 		this.setDisponibilidad(true);
 	}
