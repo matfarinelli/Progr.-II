@@ -5,7 +5,7 @@ public class CriterioNombreCientifico implements Criterio {
 	private String palabraEspecifica;
 
 	public CriterioNombreCientifico(String palabraEspecifica) {
-		this.palabraEspecifica = palabraEspecifica;
+		this.palabraEspecifica = palabraEspecifica.toUpperCase();
 	}
 
 	@Override

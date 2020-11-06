@@ -17,8 +17,8 @@ public class Planta {
 	 * Constructor
 	 */
 
-	public Planta(String nombre, String clasificacionSuperior, String familia, String clase, Boolean interior, int riego,
-			int sol) {
+	public Planta(String nombre, String clasificacionSuperior, String familia, String clase, Boolean interior,
+			int riego, int sol) {
 		super();
 		this.nombre = nombre.toUpperCase();
 		this.nombresVulgares = new ArrayList<>();
@@ -64,6 +64,10 @@ public class Planta {
 
 	public int getSol() {
 		return sol;
+	}
+
+	public void addNombreVulgar(String nombreVulgar) {
+		this.nombresVulgares.add(nombreVulgar);
 	}
 
 	/*

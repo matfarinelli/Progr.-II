@@ -25,14 +25,17 @@ public class Main {
 		v1.addPlanta(p8);
 		v1.addPlanta(p9);
 		
-		CriterioNombreCientifico c1 = new CriterioNombreCientifico("margarita");
+		Criterio c1 = new CriterioClasificacion("Magnoliophyta");
+		
+		Criterio c2 =new CriterioMayorSol(8);
+		
 		OrdenadorRiego or1 = new OrdenadorRiego();
 		
 		
 		System.out.println("1*********");
 		System.out.println(v1.getPlantas());
 		System.out.println("2*********");
-		System.out.println(v1.getPlantas(c1));
+		System.out.println(v1.getPlantas(c2));
 		System.out.println("3*********");
 		System.out.println(v1.getPlantasOrdenadas(c1, or1));
 		

@@ -5,7 +5,7 @@ public class CriterioClasificacion implements Criterio {
 	private String clasificacion;
 
 	public CriterioClasificacion(String clasificacion) {
-		this.clasificacion = clasificacion;
+		this.clasificacion = clasificacion.toUpperCase();
 	}
 
 	@Override
