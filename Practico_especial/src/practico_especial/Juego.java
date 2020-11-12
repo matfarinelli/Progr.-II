@@ -23,16 +23,38 @@ public class Juego {
 	 */
 
 	public void repartirCartas() {
-		System.out.println(mazo.getSize());
-		for (int i = 0; i < mazo.getSize()-1; i++) {
-			Carta aux = mazo.getPrimerCarta();
+
+		System.out.println(this.mazo.getSize());
+		int cantidadCartas = this.mazo.getSize();
+
+		for (int i = 0; i < cantidadCartas; i++) {
+
 			if (i % 2 == 0) {
-				this.jugador1.addCarta(aux);
+				this.jugador1.addCarta(mazo.getPrimerCarta());
 			} else {
-				this.jugador2.addCarta(aux);
+				this.jugador2.addCarta(mazo.getPrimerCarta());
 			}
-			mazo.getCartas().remove(i);
+			mazo.eliminarPrimerCarta();
 		}
+	}
+
+	public void jugarMano() {
+		Carta c1 = jugador1.jugarTurno();
+		Carta c2 = jugador2.jugarTurno();
+
+		Atributo atributoElegido = c1.getAtributoRandom();
+		Atributo atributoVs = c2.getAtributo(atributoElegido.getNombre());
+
+		System.out.println(atributoElegido.getNombre() + ", " + atributoElegido.getValor());
+		System.out.println(atributoVs.getNombre() + ", " + atributoVs.getValor());
+		
+		if (atributoElegido.getValor()>(atributoVs.getValor())) {
+			System.out.println("ganador 1" );
+		} else if (atributoElegido.getValor()<(atributoVs.getValor())) {
+			System.out.println("ganador 2" );
+		} else 
+			System.out.println("Empate");
+		
 	}
 
 }

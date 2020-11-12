@@ -1,6 +1,6 @@
 package practico_especial;
 
-public class Atributo {
+public class Atributo implements Comparable<Atributo> {
 
 	private String nombre;
 	private int valor;
@@ -34,9 +34,19 @@ public class Atributo {
 			return false;
 		}
 	}
-	
+
 	public String toString() {
 		return this.nombre + ": " + this.valor;
+	}
+
+	@Override
+	public int compareTo(Atributo o) {
+		if (this.getValor() > o.getValor()) {
+			return 1;
+		} else if (this.getValor() < o.getValor()) {
+			return -1;
+		} else
+			return 0;
 	}
 
 }

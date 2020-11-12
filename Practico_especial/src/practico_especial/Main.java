@@ -41,7 +41,6 @@ public class Main {
 		m1.mezclar();
 		System.out.println(m1.getCartas());
 		
-		
 		System.out.println("******************");
 
 		// creacion jugadores
@@ -54,6 +53,10 @@ public class Main {
 		System.out.println(j1.getSize());
 		System.out.println(j2.getSize());
 		
+		
+		System.out.println("********");
+		juego.jugarMano();
+	
 	}
 
 	

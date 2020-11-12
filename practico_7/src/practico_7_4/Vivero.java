@@ -22,6 +22,7 @@ public class Vivero {
 	 * Métodos
 	 */
 
+	
 	public void addPlanta(Planta plantaNueva) {
 		// controlo por nombre cientifico si está repetida
 		for (Planta planta : this.plantas) {
@@ -32,6 +33,14 @@ public class Vivero {
 		this.plantas.add(plantaNueva);
 	}
 
+	
+	public void addPlantaContains(Planta plantaNueva) {
+		// controlo por nombre cientifico si está repetida
+		if (!plantas.contains(plantaNueva)){
+			this.plantas.add(plantaNueva);
+			}
+	}
+	
 	// métodos de búsqueda
 
 	public ArrayList<Planta> getPlantas(Criterio criterio) {
@@ -40,7 +49,7 @@ public class Vivero {
 		for (int i = 0; i < this.plantas.size(); i++) {
 			Planta planta = this.plantas.get(i);
 			if (criterio.cumple(planta)) {
-				System.out.println("DENTRO!: " + planta.getNombre());
+				//System.out.println("DENTRO!: " + planta.getNombre());
 				plantasAux.add(planta);
 			}
 		}

@@ -14,6 +14,7 @@ public class Main {
 		Planta p7 = new Planta("girasol", "Magnoliophyta", "Fabaceae", "Magnoliopsida", false, 10, 8);
 		Planta p8 = new Planta("trebol", "Magnoliophyta", "Fabaceae", "Magnoliopsida", false, 7, 9);
 		Planta p9 = new Planta("margarita", "Magnoliophyta", "Fabaceae", "Magnoliopsida", true, 3, 2);
+		Planta p10 = new Planta("magnolia", "Magnoliophyta", "Fabaceae", "Magnoliopsida", true, 8, 4);
 		
 		v1.addPlanta(p1);
 		v1.addPlanta(p2);
@@ -23,7 +24,9 @@ public class Main {
 		v1.addPlanta(p6);
 		v1.addPlanta(p7);
 		v1.addPlanta(p8);
-		v1.addPlanta(p9);
+		v1.addPlantaContains(p9);
+		v1.addPlantaContains(p10);
+		
 		
 		Criterio c1 = new CriterioClasificacion("Magnoliophyta");
 		

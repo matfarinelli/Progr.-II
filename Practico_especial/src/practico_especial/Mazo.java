@@ -35,6 +35,11 @@ public class Mazo {
 		return this.cartas.get(0);
 	}
 	
+	public Carta getUltimaCarta() {
+		return this.cartas.get(this.getSize()-1);
+	}
+	
+	
 	
 	public Carta eliminarPrimerCarta() {
 		return this.cartas.remove(0);

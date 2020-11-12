@@ -7,7 +7,7 @@ public class Jugador {
 
 	public Jugador(String nombre) {
 		this.nombre = nombre;
-		this.mazoPropio = mazoPropio;
+		this.mazoPropio = new Mazo();
 	}
 
 	public String getNombre() {
@@ -25,5 +25,13 @@ public class Jugador {
 	public int getSize() {
 		return this.mazoPropio.getSize();
 	}
+
+	// muestra el nombre solo para control
+	public Carta jugarTurno() {
+		Carta c1 = this.mazoPropio.getUltimaCarta();
+		return c1;
+	}
+	
+	
 
 }
