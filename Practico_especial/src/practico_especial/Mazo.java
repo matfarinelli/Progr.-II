@@ -30,12 +30,16 @@ public class Mazo {
 		this.cartas.add(carta);
 	}
 	
+	public void addCartaGanada(Carta carta) {
+		this.cartas.add(0, carta);
+	}
+	
 
 	public Carta getPrimerCarta() {
 		return this.cartas.get(0);
 	}
 	
-	public Carta getUltimaCarta() {
+	public Carta getCartaAJugar() {
 		return this.cartas.get(this.getSize()-1);
 	}
 	
@@ -43,6 +47,9 @@ public class Mazo {
 	
 	public Carta eliminarPrimerCarta() {
 		return this.cartas.remove(0);
+	}
+	public Carta eliminarCartaJugada() {
+		return this.cartas.remove(this.cartas.size()-1);
 	}
 	
 	public boolean chequearAtributos(Carta carta) {

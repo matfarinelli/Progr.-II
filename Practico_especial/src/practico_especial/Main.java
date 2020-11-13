@@ -50,12 +50,19 @@ public class Main {
 		Juego juego = new Juego("Cartas",j1, j2, m1,10);
 		
 		juego.repartirCartas();
-		System.out.println(j1.getSize());
-		System.out.println(j2.getSize());
+		
+		//System.out.println("mazo "+j1.getNombre());
+		//System.out.println(j1.getMazoPropio());
+		//System.out.println("mazo "+j2.getNombre());
+		//System.out.println(j2.getMazoPropio());
 		
 		
 		System.out.println("********");
-		juego.jugarMano();
+		juego.comienzaJuego();
+	//	System.out.println("mazo "+j1.getNombre());
+		//System.out.println(j1.getMazoPropio());
+//		System.out.println("mazo "+j2.getNombre());
+		//System.out.println(j2.getMazoPropio());
 	
 	}
 

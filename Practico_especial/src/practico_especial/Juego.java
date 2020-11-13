@@ -37,23 +37,77 @@ public class Juego {
 			mazo.eliminarPrimerCarta();
 		}
 	}
+	
+	public void comienzaJuego() {
+		Jugador ganador = jugador1;
+		Jugador perdedor = jugador2;
+				
+		for(int i=1; i <= numeroMaximoRondas; i++ ) {
+			if(jugador1.isGanoUltima() == true ) {
+				 ganador = jugador1;
+				 perdedor = jugador2;
+				 jugador1.sumarPunto();
+			}
+			else {
+				 ganador = jugador2;
+				 perdedor = jugador1;
+				 jugador2.sumarPunto();
+			}
+			this.jugarMano(ganador, perdedor);
+				
+			}
+		if(jugador1.getPuntos()>jugador2.getPuntos()) {
+			
+			System.out.println("gano "+ jugador1.getNombre());
+		}
+		else if(jugador1.getPuntos( ) == jugador2.getPuntos()){
+			System.out.println("empate ");
+		}
+		else {
+			System.out.println("gano "+ jugador2.getNombre());
+		}
+		System.out.println(jugador1.getNombre()+" con "+ jugador1.getPuntos());
+		System.out.println(jugador2.getNombre()+" con "+ jugador2.getPuntos() );
+	}
 
-	public void jugarMano() {
-		Carta c1 = jugador1.jugarTurno();
-		Carta c2 = jugador2.jugarTurno();
+	public void jugarMano(Jugador ganador , Jugador perdedor) {
+		Carta c1 = ganador.jugarTurno();
+		Carta c2 = perdedor.jugarTurno();
 
 		Atributo atributoElegido = c1.getAtributoRandom();
 		Atributo atributoVs = c2.getAtributo(atributoElegido.getNombre());
 
-		System.out.println(atributoElegido.getNombre() + ", " + atributoElegido.getValor());
-		System.out.println(atributoVs.getNombre() + ", " + atributoVs.getValor());
+	//	System.out.println(atributoElegido.getNombre() + ", " + atributoElegido.getValor());
+	//	System.out.println(atributoVs.getNombre() + ", " + atributoVs.getValor());
 		
 		if (atributoElegido.getValor()>(atributoVs.getValor())) {
-			System.out.println("ganador 1" );
+			
+			jugador1.removeCartaPerdida();
+			jugador2.removeCartaPerdida();
+			jugador1.addCartaGanada(c1);
+			jugador1.addCartaGanada(c2);
+			
+		//	System.out.println("ganador "+jugador1.getNombre() );
+			jugador1.setGanoUltima(true);
+			jugador2.setGanoUltima(false);
+			
+			
 		} else if (atributoElegido.getValor()<(atributoVs.getValor())) {
-			System.out.println("ganador 2" );
+			jugador1.removeCartaPerdida();
+			jugador2.removeCartaPerdida();
+			jugador2.addCartaGanada(c1);
+			jugador2.addCartaGanada(c2);
+		//	System.out.println("ganador "+jugador2.getNombre());
+			jugador1.setGanoUltima(false);
+			jugador2.setGanoUltima(true);
+			
 		} else 
-			System.out.println("Empate");
+			
+			jugador1.removeCartaPerdida();
+			jugador2.removeCartaPerdida();
+			jugador1.addCartaGanada(c1);
+			jugador2.addCartaGanada(c2);
+			
 		
 	}
 
