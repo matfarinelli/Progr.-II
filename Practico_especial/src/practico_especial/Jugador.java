@@ -13,7 +13,7 @@ public class Jugador {
 		this.nombre = nombre;
 		this.mazoPropio = new Mazo();
 		this.puntos = 0;
-		this.ganoUltima= false;
+		this.ganoUltima= true;
 	}
 	
 
@@ -45,7 +45,7 @@ public class Jugador {
 		this.mazoPropio.addCartaGanada(carta);
 	}
 	
-	public int getSize() {
+	public int getSizeMazo() {
 		return this.mazoPropio.getSize();
 	}
 

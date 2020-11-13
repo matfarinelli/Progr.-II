@@ -47,7 +47,7 @@ public class Main {
 		Jugador j1 = new Jugador("Juan");
 		Jugador j2 = new Jugador("Matias");
 		
-		Juego juego = new Juego("Cartas",j1, j2, m1,10);
+		Juego juego = new Juego("Cartas",j1, j2, m1,500);
 		
 		juego.repartirCartas();
 		
