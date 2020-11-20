@@ -24,7 +24,7 @@ public class Juego {
 
 	public void repartirCartas() {
 
-		System.out.println(this.mazo.getSize());
+		// System.out.println(this.mazo.getSize());
 		int cantidadCartas = this.mazo.getSize();
 
 		for (int i = 0; i < cantidadCartas; i++) {
@@ -38,29 +38,39 @@ public class Juego {
 		}
 	}
 
-	public void comienzaJuego() {
-
+	public void jugar() {
+		// anterior
 		Jugador ganador = jugador1;
 		Jugador perdedor = jugador2;
 		int i = 1;
 
+		// mientras los jugadores tengan cartas en su mazo y no se supere el numero max
+		// de rondas
 		while ((jugador1.getSizeMazo() > 0 && jugador2.getSizeMazo() > 0) && (i <= numeroMaximoRondas)) {
 
-			// System.out.println("RONDA Nº " + i);
-			// Sirve para chequear si se juegan todas las rondas o algun jugador se queda sin cartas
+			// averiguar si va con "return toString" o un Syso está bien.
+			System.out.println("-------------- RONDA Nº " + i + " --------------");
+
+			this.jugarMano(ganador, perdedor);
 
 			if (jugador1.isGanoUltima() == true) {
 				ganador = jugador1;
 				perdedor = jugador2;
+				System.out.println("El ganador de la ronda fue " + jugador1.getNombre() + " y tiene "
+						+ jugador1.getSizeMazo() + " cartas en su mazo, mientras que " + jugador2.getNombre()
+						+ " tiene " + jugador2.getSizeMazo());
+
 			} else if (jugador2.isGanoUltima() == true) {
 				ganador = jugador2;
 				perdedor = jugador1;
-			}
+				System.out.println("El ganador de la ronda fue " + jugador2.getNombre() + " y tiene "
+						+ jugador2.getSizeMazo() + " cartas en su mazo, mientras que " + jugador1.getNombre()
+						+ " tiene " + jugador1.getSizeMazo());
+			} else
+				System.out.println("Empataron la ronda");
 
 			// System.out.println("Quien comienza la ronda es: " + ganador.getNombre());
 			// Control
-
-			this.jugarMano(ganador, perdedor);
 
 			i++;
 		}
@@ -88,54 +98,49 @@ public class Juego {
 
 	}
 
-	// *******************
+	public void jugarMano(Jugador mano, Jugador noMano) {
+		Carta c1 = mano.jugarTurno();
+		Carta c2 = noMano.jugarTurno();
 
-	public void jugarMano(Jugador ganador, Jugador perdedor) {
-		Carta c1 = ganador.jugarTurno();
-		Carta c2 = perdedor.jugarTurno();
+		Atributo atributoElegido = mano.elegirAtributo(c1);
+		Atributo atributoVs = noMano.jugarDevolucion(atributoElegido);
 
-		Atributo atributoElegido = c1.getAtributoRandom();
-		Atributo atributoVs = c2.getAtributo(atributoElegido.getNombre());
-
-		// System.out.println(atributoElegido.getNombre() + ", " +
-		// atributoElegido.getValor());
-		// System.out.println(atributoVs.getNombre() + ", " + atributoVs.getValor());
+		System.out.println("El jugador " + mano.getNombre() + " selecciona competir por el atributo "
+				+ atributoElegido.getNombre());
+		System.out.println("La carta de " + mano.getNombre() + " es " + c1.getNombre() + " con "
+				+ atributoElegido.getNombre() + " " + atributoElegido.getValor());
+		System.out.println("La carta de " + noMano.getNombre() + " es " + c2.getNombre() + " con "
+				+ atributoVs.getNombre() + " " + atributoVs.getValor());
 
 		if (atributoElegido.getValor() > (atributoVs.getValor())) {
 
-			jugador1.removeCartaPerdida();
-			jugador2.removeCartaPerdida();
-			jugador1.addCartaGanada(c1);
-			jugador1.addCartaGanada(c2);
+			noMano.removeCartaPerdida();
+			mano.removeCartaPerdida();
 
-			// System.out.println("ganador " + jugador1.getNombre());
+			mano.ganarCarta(c1, c2);
 
-			jugador1.setGanoUltima(true);
-			jugador2.setGanoUltima(false);
+			mano.setGanoUltima(true);
+			noMano.setGanoUltima(false);
 
-			jugador1.sumarPunto();
+			mano.sumarPunto();
 
 		} else if (atributoElegido.getValor() < (atributoVs.getValor())) {
-			jugador1.removeCartaPerdida();
-			jugador2.removeCartaPerdida();
-			jugador2.addCartaGanada(c1);
-			jugador2.addCartaGanada(c2);
+			mano.removeCartaPerdida();
+			noMano.removeCartaPerdida();
 
-			// System.out.println("ganador " + jugador2.getNombre());
+			noMano.ganarCarta(c1, c2);
 
-			jugador1.setGanoUltima(false);
-			jugador2.setGanoUltima(true);
+			mano.setGanoUltima(false);
+			noMano.setGanoUltima(true);
 
-			jugador2.sumarPunto();
+			noMano.sumarPunto();
 
 		} else if (atributoElegido.getValor() == (atributoVs.getValor())) {
 
-			jugador1.removeCartaPerdida();
-			jugador2.removeCartaPerdida();
-			jugador1.addCartaGanada(c1);
-			jugador2.addCartaGanada(c2);
+			mano.enviarCartaAlFinal(c1);
+			noMano.enviarCartaAlFinal(c2);
 
-			// System.out.println("Empataron");
+			System.out.println("Empataron la ronda");
 		}
 
 	}

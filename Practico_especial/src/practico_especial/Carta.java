@@ -1,12 +1,16 @@
 package practico_especial;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
+
+import Pocimas.Pocima;
 
 public class Carta implements Comparable<Carta> {
 
 	private String nombre;
-	private ArrayList<Atributo> atributos;
+	protected ArrayList<Atributo> atributos;
+	private Pocima pocima;
 
 	public Carta(String nombre) {
 		this.nombre = nombre;
@@ -55,10 +59,17 @@ public class Carta implements Comparable<Carta> {
 		return null;
 	}
 
-	public Atributo getAtributoRandom() {
+	public Atributo getAtributoRandom(Carta c) {
 
 		Random r = new Random();
-		Atributo a = this.atributos.get(r.nextInt(atributos.size()));
+		Atributo a = c.atributos.get(r.nextInt(atributos.size()));
+
+		return a;
+	}
+
+	public Atributo getAtributoMax(Carta c) {
+
+		Atributo a = Collections.max(this.atributos);
 
 		return a;
 	}
@@ -84,4 +95,10 @@ public class Carta implements Comparable<Carta> {
 	public int compareTo(Carta carta) {
 		return this.getNombre().compareTo(carta.getNombre());
 	}
+	
+	public void recibirPocima(Pocima pocimaRecibida) {
+		this.pocima = pocimaRecibida;
+	}
+	
+	
 }
